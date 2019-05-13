@@ -205,7 +205,7 @@ class NoBirdError(Exception):
 ```
 class ZooCatalog:
     ...
-    def add_bird(new_bird):
+    def add_bird(self, new_bird):
         if type(new_bird) != Bird:
             raise NoBirdError('this is not a bird')
 ```
