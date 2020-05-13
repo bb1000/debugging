@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <style type="text/css">
-      @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
-      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
       body {
         font-family: 'Droid Serif';
@@ -137,9 +137,19 @@ class: center, middle, inverse
 
 ---
 
-&lt;script type=&#34;text/javascript&#34;
-  src=&#34;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#34;&gt;
-&lt;/script&gt;
+<style>
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<link rel="stylesheet" href="/js/highlight/styles/gruvbox-light.css">
+<script src="/js/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 # Debugging
 
 ## 
@@ -177,10 +187,10 @@ layout: false
 ##Assertions
 
 ```
-&gt;&gt;&gt; assert True
-&gt;&gt;&gt; assert False
+>>> assert True
+>>> assert False
 Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
+  File "<stdin>", line 1, in <module>
 AssertionError
 
 ```
@@ -202,16 +212,16 @@ In code:
 ```
 #get_number.py
 def get_number(n):
-    assert type(n) == int, &#39;Argument should be an integer&#39;
-    print(&#34;Number is %d&#34; % n)
+    assert type(n) == int, 'Argument should be an integer'
+    print("Number is %d" % n)
 
-get_number(&#34;hello&#34;)
+get_number("hello")
 ```
 
 * Disable with -O
 
 ```
-&gt; python -O program.py
+> python -O program.py
 ```
 
 ---
@@ -222,9 +232,9 @@ get_number(&#34;hello&#34;)
 * unless you handle them in some way and continue running
 
 ```
-&gt;&gt;&gt; 1/0                                                                          #doctest: +SKIP
+>>> 1/0                                                                          #doctest: +SKIP
 Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
+  File "<stdin>", line 1, in <module>
 ZeroDivisionError: integer division or modulo by zero
 
 ```
@@ -234,43 +244,43 @@ ZeroDivisionError: integer division or modulo by zero
 * if an error happends the code skips to the following except clause
 
 ```
-&gt;&gt;&gt; try:
+>>> try:
 ...     1/0
 ... except ZeroDivisionError:
-...     print(&#34;Warning:Zero division, continuing&#34;)
+...     print("Warning:Zero division, continuing")
 Warning:Zero division, continuing
-&gt;&gt;&gt;
+>>>
 
 
 ```
 
 ---
 
-Parents&#39; approach (ask permission first)
+Parents' approach (ask permission first)
 
-&lt;!--
+<!--
 ```
-&gt;&gt;&gt; n = 0
-
-```
-
---&gt;
+>>> n = 0
 
 ```
-&gt;&gt;&gt; if n != 0:
+
+-->
+
+```
+>>> if n != 0:
 ...     print(1/n)
 ... else:
-...     print(&#39;Warning...&#39;)
+...     print('Warning...')
 Warning...
 
 ```
 
-Childs&#39; approach (ask forgiveness after)
+Childs' approach (ask forgiveness after)
 ```
-&gt;&gt;&gt; try:
+>>> try:
 ...     print(1/n)
 ... except ZeroDivisionError:
-...     print(&#39;Warning...&#39;)
+...     print('Warning...')
 Warning...
 
 ```
@@ -292,10 +302,10 @@ try:
     filename = sys.argv[1]
     lines = open(filename).read()
 except IndexError:
-    print(&#34;Usage: %s filename&#34; % sys.argv[0])
+    print("Usage: %s filename" % sys.argv[0])
     sys.exit()
 except FileNotFoundError:
-    print(&#34;%s: no such file, %s&#34; % (sys.argv[0], filename))
+    print("%s: no such file, %s" % (sys.argv[0], filename))
     sys.exit()
 
 print(lines)
@@ -307,7 +317,7 @@ Usage: %s filename
 python cat.py nofile
 cat.py: no such file, nofile
 python cat.py somefile
-&lt;contents of somefile&gt;
+<contents of somefile>
 ```
 
 ---
@@ -316,7 +326,7 @@ In programs
 
 * an error condition is indicated by raising an exception
 ```
-raise Exception(&#39;something is wrong here&#39;)
+raise Exception('something is wrong here')
 ```
 * exceptions can be created with the Exception() call
     - creates an instance of the Exception class
@@ -330,12 +340,12 @@ raise Exception(&#39;something is wrong here&#39;)
 
 Define your own exceptions
 
-&lt;!--
+<!--
 ```
-&gt;&gt;&gt; from zoo import ZooCatalog, Bird, Reptile
+>>> from zoo import ZooCatalog, Bird, Reptile
 
 ```
---&gt;
+-->
 
 ```
 class NoBirdError(Exception):
@@ -346,17 +356,17 @@ class ZooCatalog:
     ...
     def add_bird(self, new_bird):
         if type(new_bird) != Bird:
-            raise NoBirdError(&#39;this is not a bird&#39;)
+            raise NoBirdError('this is not a bird')
 ```
 
 executing
 
 ```
-&gt;&gt;&gt; zoo = ZooCatalog()
-&gt;&gt;&gt; zoo.add_bird(Reptile())                                                      #doctest: +IGNORE_EXCEPTION_DETAIL
+>>> zoo = ZooCatalog()
+>>> zoo.add_bird(Reptile())                                                      #doctest: +IGNORE_EXCEPTION_DETAIL
 Traceback (most recent call last):
 	...
-    raise NoBirdError(&#39;this not a bird&#39;)
+    raise NoBirdError('this not a bird')
 __main__.NoBirdError: this not a bird
 
 ```
@@ -379,9 +389,9 @@ def test_nobird():
 
 
 ```
-&gt;&gt;&gt; import logging
-&gt;&gt;&gt; logging.basicConfig(level=logging.DEBUG, format=&#34;%(message)&#34;)
-&gt;&gt;&gt; logging.debug(&#39;Hello world&#39;)                                                 #doctest: +SKIP
+>>> import logging
+>>> logging.basicConfig(level=logging.DEBUG, format="%(message)")
+>>> logging.debug('Hello world')                                                 #doctest: +SKIP
 Hello world
 
 ```
@@ -393,10 +403,10 @@ Hello world
 * tracking more info
 
 ```
-&gt;&gt;&gt; log_format = &#39; %(asctime)s %(levelname)s: &lt;%(message)s&gt;&#39;
-&gt;&gt;&gt; logging.basicConfig(level=logging.DEBUG, format=log_format)
-&gt;&gt;&gt; logging.debug(&#39;Hello world&#39;)
- 2017-05-09 13:42:55,142 DEBUG: &lt;Hello world&gt;
+>>> log_format = ' %(asctime)s %(levelname)s: <%(message)s>'
+>>> logging.basicConfig(level=logging.DEBUG, format=log_format)
+>>> logging.debug('Hello world')
+ 2017-05-09 13:42:55,142 DEBUG: <Hello world>
 ```
 
 
@@ -412,17 +422,17 @@ CRITICAL | `logging.critical()` |Fatal error
 
 
 ```
-logging.debug(&#39;Diagnosic output&#39;)
-logging.info(&#39;Starting ok&#39;)
-logging.error(&#39;Som error has occured&#39;)
-logging.critical(&#39;Unable to recover&#39;)
+logging.debug('Diagnosic output')
+logging.info('Starting ok')
+logging.error('Som error has occured')
+logging.critical('Unable to recover')
 ```
 
 ```
- 2017-05-09 14:17:26,822 DEBUG: &lt;Diagnosic output&gt;
- 2017-05-09 14:17:26,822 INFO: &lt;Starting ok&gt;
- 2017-05-09 14:17:26,822 ERROR: &lt;Some error has occured&gt;
- 2017-05-09 14:17:26,822 CRITICAL: &lt;Unable to recover&gt;
+ 2017-05-09 14:17:26,822 DEBUG: <Diagnosic output>
+ 2017-05-09 14:17:26,822 INFO: <Starting ok>
+ 2017-05-09 14:17:26,822 ERROR: <Some error has occured>
+ 2017-05-09 14:17:26,822 CRITICAL: <Unable to recover>
 ```
 
 * disable all logging
@@ -434,7 +444,7 @@ logging.disable(logging.CRITICAL)
 * logging to a file (keep normal output clean)
 
 ```
-logging.basicConfig(level=logging.DEBUG, format=&#34;%(message)&#34;, filename=&#34;my.log&#34;)
+logging.basicConfig(level=logging.DEBUG, format="%(message)", filename="my.log")
 
 ```
 
@@ -450,61 +460,29 @@ logging.basicConfig(level=logging.DEBUG, format=&#34;%(message)&#34;, filename=&
 
 ---
 
-### The pdb module
+## The pdb module
     
 ```
-&gt;&gt;&gt; import pdb
-&gt;&gt;&gt; dir(pdb)
-[&#39;Pdb&#39;, &#39;Restart&#39;, &#39;TESTCMD&#39;, &#39;__all__&#39;, &#39;__builtins__&#39;, &#39;__cached__&#39;,
-&#39;__doc__&#39;, &#39;__file__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;,
-&#39;_rstr&#39;, &#39;_usage&#39;, &#39;bdb&#39;, &#39;cmd&#39;, &#39;code&#39;, &#39;dis&#39;, &#39;find_function&#39;,
-&#39;getsourcelines&#39;, &#39;glob&#39;, &#39;help&#39;, &#39;inspect&#39;, &#39;lasti2lineno&#39;, &#39;line_prefix&#39;,
-&#39;linecache&#39;, &#39;main&#39;, &#39;os&#39;, &#39;pm&#39;, &#39;post_mortem&#39;, &#39;pprint&#39;, &#39;re&#39;, &#39;run&#39;,
-&#39;runcall&#39;, &#39;runctx&#39;, &#39;runeval&#39;, &#39;set_trace&#39;, &#39;signal&#39;, &#39;sys&#39;, &#39;test&#39;,
-&#39;traceback&#39;]
+>>> import pdb
+>>> dir(pdb)
+['Pdb', 'Restart', 'TESTCMD', '__all__', '__builtins__', '__cached__',
+'__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__',
+'_rstr', '_usage', 'bdb', 'cmd', 'code', 'dis', 'find_function',
+'getsourcelines', 'glob', 'help', 'inspect', 'lasti2lineno', 'line_prefix',
+'linecache', 'main', 'os', 'pm', 'post_mortem', 'pprint', 're', 'run',
+'runcall', 'runctx', 'runeval', 'set_trace', 'signal', 'sys', 'test',
+'traceback']
 
 ```
 
---
-
-* Execute a string statment
-
-```
-&gt;&gt;&gt; pdb.run(&#39;print(&#34;Hello world!&#34;)&#39;)                                              #doctest: +SKIP
-&gt; &lt;string&gt;(1)&lt;module&gt;()
-(Pdb)
-
-```
-
---
-
-```
-(Pdb) continue
-Hello world!
-```
-
---
-
-* Evaluate a string expression
-
-```
-&gt;&gt;&gt; pdb.runeval(&#39;1 &gt; 0&#39;)                                                          #doctest: +SKIP
-&gt; &lt;string&gt;(1)&lt;module&gt;()
-(Pdb)
-```
---
-
-```
-(Pdb) continue
-True
-```
 ---
 
-In larger code insert a break point
+## Breakpoints
 
 ```
-&gt;&gt;&gt; def add(a, b):
-...    pdb.set_trace()
+>>> def add(a, b):
+...    breakpoint()  
+...    # import pdb; pdb.set_trace() for python<3.7
 ...    c  = a - b
 ...    return c
 
@@ -528,7 +506,7 @@ Some of the most used commands are common ``gdb``
 
 ```
 (Pdb) help
-Documented commands (type help &lt;topic&gt;):
+Documented commands (type help <topic>):
 ========================================
 EOF    bt         cont      enable  jump  pp       run      unt   
 a      c          continue  exit    l     q        s        until 
@@ -540,7 +518,13 @@ break  condition  down      j       p     return   unalias  where
 
 ```
      
-See http://docs.python.org/3/library/pdb.html for more docs
+---
+
+## Links
+
+* http://docs.python.org/3/library/pdb.html
+* https://realpython.com/python-debugging-pdb/
+* https://youtu.be/5AYIe-3cD-s
 
 ---
 
@@ -550,14 +534,17 @@ See http://docs.python.org/3/library/pdb.html for more docs
 * `pdb`  modules  for debugging
 * Useful shortcut: insert the line
 ```
-import pdb; pdb.set_trace()
+breakpoint()
 ```
 anywhere in your code to get a breakpoint and the run the program as normal
 
 * pytest --pdb executes tests and stops in the debugger if there is an error
-* insert &#34;assert False&#34; in a code under pytest works as a breakpoint
+* insert "assert False" in a code under pytest works as a breakpoint
 
 
+---
+
+### Links
     </textarea>
 
     <script src="/debugging/refreeze/js/remark-latest.min.js" type="text/javascript"></script>
@@ -567,7 +554,7 @@ anywhere in your code to get a breakpoint and the run the program as normal
     <script src="/debugging/refreeze/js/high.js" type="text/javascript"></script>
     <script type="text/javascript">
       var slideshow = remark.create({
-          highlightStyle: 'sunburst',
+          highlightStyle: 'gmd',
           highlightLanguage: 'remark'
         }) ;
     </script>

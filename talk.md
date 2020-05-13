@@ -1,3 +1,13 @@
+<style>
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<link rel="stylesheet" href="/js/highlight/styles/gruvbox-light.css">
+<script src="/js/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -311,7 +321,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(message)", filename="my.log")
 
 ---
 
-### The pdb module
+## The pdb module
     
 ```
 >>> import pdb
@@ -326,46 +336,14 @@ logging.basicConfig(level=logging.DEBUG, format="%(message)", filename="my.log")
 
 ```
 
---
-
-* Execute a string statment
-
-```
->>> pdb.run('print("Hello world!")')                                              #doctest: +SKIP
-> <string>(1)<module>()
-(Pdb)
-
-```
-
---
-
-```
-(Pdb) continue
-Hello world!
-```
-
---
-
-* Evaluate a string expression
-
-```
->>> pdb.runeval('1 > 0')                                                          #doctest: +SKIP
-> <string>(1)<module>()
-(Pdb)
-```
---
-
-```
-(Pdb) continue
-True
-```
 ---
 
-In larger code insert a break point
+## Breakpoints
 
 ```
 >>> def add(a, b):
-...    pdb.set_trace()
+...    breakpoint()  
+...    # import pdb; pdb.set_trace() for python<3.7
 ...    c  = a - b
 ...    return c
 
@@ -401,7 +379,13 @@ break  condition  down      j       p     return   unalias  where
 
 ```
      
-See http://docs.python.org/3/library/pdb.html for more docs
+---
+
+## Links
+
+* http://docs.python.org/3/library/pdb.html
+* https://realpython.com/python-debugging-pdb/
+* https://youtu.be/5AYIe-3cD-s
 
 ---
 
@@ -411,7 +395,7 @@ See http://docs.python.org/3/library/pdb.html for more docs
 * `pdb`  modules  for debugging
 * Useful shortcut: insert the line
 ```
-import pdb; pdb.set_trace()
+breakpoint()
 ```
 anywhere in your code to get a breakpoint and the run the program as normal
 
@@ -419,3 +403,6 @@ anywhere in your code to get a breakpoint and the run the program as normal
 * insert "assert False" in a code under pytest works as a breakpoint
 
 
+---
+
+### Links
