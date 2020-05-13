@@ -22,6 +22,19 @@ KTH
 
 layout: false
 
+# TOC
+* [Debugging](#1)
+  + [Learning outcomes](#3)
+  + [About bugs](#4)
+  + [Logging](#12)
+  + [Debuggers](#14)
+  + [The pdb module](#15)
+  + [Breakpoints](#16)
+  + [Links](#19)
+
+
+---
+
 ## Learning outcomes
 
 * know how to use assertions
@@ -403,6 +416,3 @@ anywhere in your code to get a breakpoint and the run the program as normal
 * insert "assert False" in a code under pytest works as a breakpoint
 
 
----
-
-### Links
