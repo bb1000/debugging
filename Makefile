@@ -1,6 +1,6 @@
 index.html: talk.md
 	python refreeze/freeze.py
-	perl -pi -e "s,/js/highlight/,/classes/js/highlight/," index.html
+	perl -pi -e "s,/js/highlight/,/debugging/js/highlight/," index.html
 	
 
 test:
