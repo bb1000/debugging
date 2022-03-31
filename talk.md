@@ -11,9 +11,8 @@
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-# Debugging
 
-## 
+# Debugging
 
 BB1000 Programming in Python
 KTH
@@ -21,19 +20,6 @@ KTH
 ---
 
 layout: false
-
-# TOC
-* [Debugging](#1)
-  + [Learning outcomes](#3)
-  + [About bugs](#4)
-  + [Logging](#12)
-  + [Debuggers](#14)
-  + [The pdb module](#15)
-  + [Breakpoints](#16)
-  + [Links](#19)
-
-
----
 
 ## Learning outcomes
 
@@ -58,7 +44,7 @@ layout: false
 
 ---
 
-##Assertions
+## Assertions
 
 ```
 >>> assert True
