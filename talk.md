@@ -1,21 +1,4 @@
-<style>
-.centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-<link rel="stylesheet" href="/js/highlight/styles/gruvbox-light.css">
-<script src="/js/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 # Debugging
-
-BB1000 Programming in Python
-KTH
 
 ---
 
@@ -32,7 +15,7 @@ layout: false
 
 ## About bugs
 
-### Best approch to avoiding
+### Best approach to avoiding
 
 - TDD
 - Version control
@@ -116,7 +99,7 @@ Warning:Zero division, continuing
 
 ---
 
-Parents' approach (ask permission first)
+Parents' approach (Look before you leap: LBYL)
 
 <!--
 ```
@@ -135,7 +118,7 @@ Warning...
 
 ```
 
-Childs' approach (ask forgiveness after)
+Childs' approach (easier to ask for forgivness than for permission: EAFP)
 ```
 >>> try:
 ...     print(1/n)
@@ -157,26 +140,25 @@ Script which emulates the Linux `cat` command:
 
 ```
 #cat.py
-import sys
 try:
     filename = sys.argv[1]
     lines = open(filename).read()
 except IndexError:
-    print("Usage: %s filename" % sys.argv[0])
-    sys.exit()
+    print(f"Usage: {sys.argv[0]} filename")
+    exit()
 except FileNotFoundError:
-    print("%s: no such file, %s" % (sys.argv[0], filename))
-    sys.exit()
+    print(f"{sys.argv[0]}: no such file, {filename}")
+    exit()
 
 print(lines)
 ```
 
 ```bash
-python cat.py
+$ python cat.py
 Usage: %s filename
-python cat.py nofile
+$ python cat.py nofile
 cat.py: no such file, nofile
-python cat.py somefile
+$ python cat.py somefile
 <contents of somefile>
 ```
 
